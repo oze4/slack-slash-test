@@ -17,10 +17,11 @@ app.use(express.json({
 app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
-    console.log("rawBody*".repeat(30));
+    let thirty = "*".repeat(30);
+    console.log("rawBody " + thirty);
     console.log(req.rawBody);
     console.log(req.headers);
-    console.log("*".repeat(37));
+    console.log("*".repeat(38));
 
     fetch(process.env.SLACK_VALIDATOR_URL, {
         method: "POST",
