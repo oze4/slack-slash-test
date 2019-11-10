@@ -4,22 +4,30 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const fetch = require('node-fetch');
+const middleware = require('./middleware');
 
 app.set('port', process.env.PORT);
-app.use(express.urlencoded());
-app.use(express.json());
+app.use(express.urlencoded({ 
+    verify: middleware.rawBodyBuffer, 
+    extended: false 
+}));
+app.use(express.json({
+    verify: middleware.rawBodyBuffer
+}));
 app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
-    console.log("*".repeat(30));
-    console.log(req.body);
+    console.log("rawBody*".repeat(30));
+    console.log(req.rawBody);
     console.log(req.headers);
-    console.log("*".repeat(30));
+    console.log("*".repeat(37));
 
     fetch(process.env.SLACK_VALIDATOR_URL, {
         method: "POST",
         headers: req.headers,
-        body: JSON.stringify(req.body),
+        body: {
+            rawbody: req.rawBody
+        },
     }).then(res => {
         return res.json()
     }).then(json => {
