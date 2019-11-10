@@ -3,14 +3,30 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
+const fetch = require('node-fetch');
 
 app.set('port', process.env.PORT);
 app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
     console.log(req.body);
-    res.status(200).send("Hello from test!");
-})
+
+    fetch(process.env.SLACK_VALIDATOR_URL, {
+        method: "POST",
+        headers: req.headers,
+        body: req.body,
+    }).then(res => {
+        return res.json()
+    }).then(json => {
+        if(json.status === "true") {
+            res.status(200).send("Success! :smile:");
+        }
+        res.status(200).send("Failure :cry:");
+    }).catch(err => {
+        res.status(200).send("Caught Failure :cry: " + err);
+    });
+    
+});
 
 app.use((req, res, next) => res.status(404).send("Oops can't find that! " + req.url)); // Route not found
 
