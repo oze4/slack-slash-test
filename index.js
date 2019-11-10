@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const fetch = require('node-fetch');
 
 app.set('port', process.env.PORT);
+app.use(express.urlencoded());
+app.use(express.json());
 app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
