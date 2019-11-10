@@ -13,7 +13,7 @@ spec:
         app: ugonnawinms-slash-test
     spec:
       containers:
-      - name: mattoestreich
+      - name: ugonnawinms-slash-test
         image: oze4/ugonnawinms-slash-test:latest
         env:
         - name: PORT
