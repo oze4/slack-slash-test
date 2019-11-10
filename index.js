@@ -12,7 +12,7 @@ app.post("/", (req, res, next) => {
     res.status(200).send("Hello from test!");
 })
 
-app.use((req, res, next) => res.status(500).send()); // Route not found
+app.use((req, res, next) => res.status(404).send("Oops can't find that! " + req.url)); // Route not found
 
 const server = app.listen(app.get('port'), () => {
     const _addr = server.address();
