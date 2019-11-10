@@ -7,9 +7,9 @@ const fetch = require('node-fetch');
 const middleware = require('./middleware');
 
 app.set('port', process.env.PORT);
-app.use(express.urlencoded({ 
-    verify: middleware.rawBodyBuffer, 
-    extended: false 
+app.use(express.urlencoded({
+    verify: middleware.rawBodyBuffer,
+    extended: false
 }));
 app.use(express.json({
     verify: middleware.rawBodyBuffer
@@ -18,6 +18,7 @@ app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
     let thirty = "*".repeat(30);
+    
     console.log("rawBody " + thirty);
     console.log(req.rawBody);
     console.log(req.headers);
@@ -29,11 +30,11 @@ app.post("/slash/test", (req, res, next) => {
             ...req.headers,
             'x-raw-body': req.rawBody
         },
-        body: JSON.stringify(req.body),
+        body: JSON.stringify({ ...req.body, token: req.body.token }),
     }).then(res => {
         return res.json()
     }).then(json => {
-        if(json.status === "true") {
+        if (json.status === "true") {
             res.status(200).send("Success! :smile:");
         }
         res.status(200).send("Failure :cry: " + JSON.stringify(json));
