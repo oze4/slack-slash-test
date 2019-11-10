@@ -18,5 +18,7 @@ spec:
         env:
         - name: PORT
           value: ${PORT}
+        - name: SLACK_VALIDATOR_URL
+          value: ${SLACK_VALIDATOR_URL}
         ports:
         - containerPort: ${PORT}

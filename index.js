@@ -7,14 +7,11 @@ const fetch = require('node-fetch');
 
 app.set('port', process.env.PORT);
 app.use(helmet());
-console.log(process.env.SLACK_VALIDATOR_URL);
 
 app.post("/slash/test", (req, res, next) => {
     console.log(req.body);
-    console.log(process.env.SLACK_VALIDATOR_URL);
-    console.log(process.env.TEST);
 
-    fetch("http://ugonnawinms-slack-validator-service.default.svc.cluster.local/validate", {
+    fetch(process.env.SLACK_VALIDATOR_URL, {
         method: "POST",
         headers: req.headers,
         body: req.body,
