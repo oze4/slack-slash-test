@@ -2,7 +2,7 @@ def app
 def slave_pod = 'jenkins-slave-pod'
 def container_in_slave_pod = 'docker'
 def kube_config_id = 'ost-sf-kube-00-config'
-def deployment_manifest = 'deploy/*'
+def deployment_manifest = 'deploy/deployment.yaml'
 def dockerhub_container_name = 'oze4/ugonnawinms-slash-test'
 
 podTemplate(label: slave_pod) {

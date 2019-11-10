@@ -12,8 +12,9 @@ console.log(process.env.SLACK_VALIDATOR_URL);
 app.post("/slash/test", (req, res, next) => {
     console.log(req.body);
     console.log(process.env.SLACK_VALIDATOR_URL);
-    
-    fetch(process.env.SLACK_VALIDATOR_URL, {
+    console.log(process.env.TEST);
+
+    fetch("http://ugonnawinms-slack-validator-service.default.svc.cluster.local/validate", {
         method: "POST",
         headers: req.headers,
         body: req.body,
