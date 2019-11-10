@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 
 app.set('port', process.env.PORT);
 app.use(helmet());
+console.log(process.env.SLACK_VALIDATOR_URL);
 
 app.post("/slash/test", (req, res, next) => {
     console.log(req.body);
