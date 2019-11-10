@@ -9,7 +9,10 @@ app.set('port', process.env.PORT);
 app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
+    console.log("*".repeat(30));
     console.log(req.body);
+    console.log(req.headers);
+    console.log("*".repeat(30));
 
     fetch(process.env.SLACK_VALIDATOR_URL, {
         method: "POST",
