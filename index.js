@@ -21,7 +21,7 @@ app.post("/slash/test", (req, res, next) => {
         if(json.status === "true") {
             res.status(200).send("Success! :smile:");
         }
-        res.status(200).send("Failure :cry: " + json);
+        res.status(200).send("Failure :cry: " + JSON.stringify(json));
     }).catch(err => {
         res.status(200).send("Caught Failure :cry: " + err);
     });
