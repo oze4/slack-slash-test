@@ -10,7 +10,8 @@ app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
     console.log(req.body);
-
+    console.log(process.env.SLACK_VALIDATOR_URL);
+    
     fetch(process.env.SLACK_VALIDATOR_URL, {
         method: "POST",
         headers: req.headers,
@@ -25,7 +26,7 @@ app.post("/slash/test", (req, res, next) => {
     }).catch(err => {
         res.status(200).send("Caught Failure :cry: " + err);
     });
-    
+
 });
 
 app.use((req, res, next) => res.status(404).send("Oops can't find that! " + req.url)); // Route not found
