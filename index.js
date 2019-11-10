@@ -7,7 +7,7 @@ const helmet = require('helmet');
 app.set('port', process.env.PORT);
 app.use(helmet());
 
-app.post("/", (req, res, next) => {
+app.post("/slash/test", (req, res, next) => {
     console.log(req.body);
     res.status(200).send("Hello from test!");
 })
