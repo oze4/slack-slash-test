@@ -29,9 +29,7 @@ app.post("/slash/test", (req, res, next) => {
             ...req.headers,
             'x-raw-body': req.rawBody
         },
-        body: {
-            rawbody: req.rawBody
-        },
+        body: JSON.stringify(req.body),
     }).then(res => {
         return res.json()
     }).then(json => {
