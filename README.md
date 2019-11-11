@@ -1,1 +1,5 @@
-slack-slash-test
+## Slack Slash Command - Test
+
+#### Commands:
+
+- `/slash/test`
