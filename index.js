@@ -18,7 +18,7 @@ app.use(helmet());
 
 app.post("/slash/test", (req, res, next) => {
     let thirty = "*".repeat(30);
-    
+
     console.log("rawBody " + thirty);
     console.log(req.rawBody);
     console.log(req.headers);
@@ -30,7 +30,9 @@ app.post("/slash/test", (req, res, next) => {
             ...req.headers,
             'x-raw-body': req.rawBody
         },
-        body: JSON.stringify({ ...req.body, token: req.body.token }),
+        body: {
+            token: req.body.token
+        }
     }).then(res => {
         return res.json()
     }).then(json => {
