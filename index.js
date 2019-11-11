@@ -15,6 +15,7 @@ app.post("/slash/test", (req, res, next) => {
     fetch(process.env.SLACK_VALIDATOR_URL, {
         method: "POST",
         headers: {
+            ...req.headers,
             'x-raw-body': req.rawBody,
             'x-raw-token': req.body.token
         },
