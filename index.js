@@ -31,11 +31,9 @@ app.post("/slash/test", (req, res, next) => {
         method: "POST",
         headers: {
             ...req.headers,
-            'x-raw-body': req.rawBody
+            'x-raw-body': req.rawBody,
+            'x-raw-token': req.body.token
         },
-        body: {
-            token: req.body.token
-        }
     }).then(res => {
         return res.json()
     }).then(json => {
