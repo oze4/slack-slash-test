@@ -22,6 +22,9 @@ app.post("/slash/test", (req, res, next) => {
     console.log("rawBody " + thirty);
     console.log(req.rawBody);
     console.log(req.headers);
+    console.log();
+    console.log("*** req.body.token ***");
+    console.log(req.body.token);
     console.log("*".repeat(38));
 
     fetch(process.env.SLACK_VALIDATOR_URL, {
