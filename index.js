@@ -37,7 +37,7 @@ app.post("/slash/test", (req, res, next) => {
     }).then(res => {
         return res.json()
     }).then(json => {
-        if (json.status === "true") {
+        if (json.status === "true" || json.status === true) {
             res.status(200).send("Success! :smile:");
         }
         res.status(200).send("Failure :cry: " + JSON.stringify(json));
